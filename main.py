@@ -1,16 +1,13 @@
-import click
-from src.services.user_services import UserService
+from src.interfaces.menu import menu
+import curses
 
 
-@click.command()
-@click.option('--name', help='Your name')
-def hello( name ):
-    click.echo(message=f"Hello world {name}", color=True)
 
-@click.command()
-def find_users():
-    users = UserService()
-    click.echo(users.find_users())
+def loop( stdscr ):
+    curses.curs_set(0)
+    menu()
+    curses.curs_set(1)
 
 if __name__ == '__main__':
-    pass
+    curses.wrapper(loop)
+        
